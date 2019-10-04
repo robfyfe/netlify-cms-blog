@@ -1,45 +1,55 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardActionArea,
+  Typography,
+} from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { rhythm } from "../utils/typography";
+
+const styles = theme => ({
+  postCard: {
+    marginBottom: theme.spacing(5),
+  },
+  postDescription: {
+    color: "black",
+  },
+});
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, classes } = this.props;
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
+        <SEO title="Sweet Dreams Jelly Bean" />
         <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug;
           return (
-            <article key={node.fields.slug}>
-              <header>
-                <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
-                >
-                  <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-              </header>
-              <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: node.frontmatter.description || node.excerpt,
-                  }}
-                />
-              </section>
-            </article>
+            <Card className={classes.postCard} key={node.fields.slug}>
+              <CardActionArea>
+                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                  <CardHeader title={title} subheader={node.frontmatter.date} />
+                  <CardContent>
+                    <Typography
+                      className={classes.postDescription}
+                      variant="h6"
+                      dangerouslySetInnerHTML={{
+                        __html: node.frontmatter.description || node.excerpt,
+                      }}
+                    />
+                  </CardContent>
+                </Link>
+              </CardActionArea>
+            </Card>
           );
         })}
       </Layout>
@@ -47,7 +57,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex;
+export default withStyles(styles)(BlogIndex);
 
 export const pageQuery = graphql`
   query {

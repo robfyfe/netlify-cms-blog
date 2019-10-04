@@ -10,6 +10,18 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        theme: {
+          palette: {
+            primary: {
+              main: "#BA3D3B", // new color here
+            },
+          },
+        },
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
