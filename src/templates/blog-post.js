@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { Paper, Typography } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
@@ -12,8 +12,11 @@ const styles = theme => ({
     paddingTop: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-    paddingBottom: theme.spacing(0.2),
+    paddingBottom: theme.spacing(),
     marginBottom: theme.spacing(2),
+  },
+  postContent: {
+    paddingLeft: theme.spacing(3),
   },
 });
 
@@ -30,38 +33,22 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <Paper className={classes.postContainer}>
-          <article>
-            <header>
-              <h1
-                style={{
-                  marginTop: rhythm(1),
-                  marginBottom: 0,
-                }}
-              >
-                {post.frontmatter.title}
-              </h1>
-              <p
-                style={{
-                  ...scale(-1 / 5),
-                  display: `block`,
-                  marginBottom: rhythm(1),
-                }}
-              >
-                {post.frontmatter.date}
-              </p>
-            </header>
+        <Card className={classes.postContainer}>
+          <CardHeader
+            title={post.frontmatter.title}
+            subheader={post.frontmatter.date}
+          />
+          <CardContent>
             <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
             <hr
               style={{
                 marginTop: rhythm(1),
               }}
             />
-            <footer>
-              <Bio />
-            </footer>
-          </article>
-        </Paper>
+            <Bio />
+          </CardContent>
+          >
+        </Card>
 
         <nav>
           <ul
