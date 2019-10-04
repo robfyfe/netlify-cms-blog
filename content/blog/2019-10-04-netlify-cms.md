@@ -1,0 +1,20 @@
+---
+title: Netlify CMS
+date: 2019-10-04T03:42:09.403Z
+description: This is the description part
+---
+This is the main body part.
+
+
+
+> What else can I do with 
+>
+> _**formatting**_
+>
+> .
+
+* a list
+* with stuff
+
+1. and numbers
+2. too, wow
