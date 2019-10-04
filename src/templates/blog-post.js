@@ -47,7 +47,6 @@ class BlogPostTemplate extends React.Component {
             />
             <Bio />
           </CardContent>
-          >
         </Card>
 
         <nav>
