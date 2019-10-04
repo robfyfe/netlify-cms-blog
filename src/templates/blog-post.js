@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import { Card, CardContent, Typography } from "@material-ui/core";
+import { Card, CardContent, CardHeader, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import { rhythm, scale } from "../utils/typography";
+import { rhythm } from "../utils/typography";
 
 const styles = theme => ({
   postContainer: {
@@ -33,12 +33,12 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <Card className={classes.postContainer}>
+        <Card>
           <CardHeader
             title={post.frontmatter.title}
             subheader={post.frontmatter.date}
           />
-          <CardContent>
+          <CardContent className={classes.postContent}>
             <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
             <hr
               style={{
