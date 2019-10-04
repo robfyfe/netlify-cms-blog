@@ -9,7 +9,10 @@ import { rhythm, scale } from "../utils/typography";
 
 const styles = theme => ({
   postContainer: {
-    padding: theme.spacing(2),
+    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    paddingBottom: theme.spacing(0.2),
     marginBottom: theme.spacing(2),
   },
 });
@@ -51,7 +54,7 @@ class BlogPostTemplate extends React.Component {
             <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
             <hr
               style={{
-                marginBottom: rhythm(1),
+                marginTop: rhythm(1),
               }}
             />
             <footer>
